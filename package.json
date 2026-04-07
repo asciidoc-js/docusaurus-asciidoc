@@ -15,8 +15,8 @@
     "src"
   ],
   "dependencies": {
-    "@asciidoc-js/reasciidoc-parse": "^0.1.0",
-    "@asciidoc-js/reasciidoc-remark": "^0.1.0",
+    "@asciidoc-js/adast-util-from-asciidoc": "^1.0.0",
+    "@asciidoc-js/adast-util-to-mdast": "^1.0.0",
     "unist-util-visit": "^5.1.0"
   },
   "peerDependencies": {

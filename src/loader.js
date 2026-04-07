@@ -3,7 +3,7 @@
  * and stores it in a shared registry.
  *
  * Pipeline (inside the loader):
- *   AsciiDoc text → adast (via @asciidoc-js/reasciidoc) → mdast (via adast-mdast)
+ *   AsciiDoc text → adast (via @asciidoc-js/adast-util-from-asciidoc) → mdast (via adast-mdast)
  *
  * The loader returns only the YAML front-matter (if present) as valid
  * markdown.  The MDX parser will parse this into a near-empty tree, and
@@ -12,8 +12,8 @@
  * serialization round-trip.
  */
 
-import { fromAsciidoc } from '@asciidoc-js/reasciidoc';
-import { toMdast } from 'adast-mdast';
+import { fromAsciidoc } from '@asciidoc-js/adast-util-from-asciidoc';
+import { toMdast } from '@asciidoc-js/adast-util-to-mdast';
 import { mdastRegistry } from './registry.js';
 
 const FRONT_MATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;

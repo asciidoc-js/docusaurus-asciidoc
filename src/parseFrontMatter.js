@@ -16,17 +16,17 @@
  *
  * When Docusaurus reads a `.adoc` file, the default parser extracts the YAML
  * front-matter block.  This wrapper then inspects the remaining AsciiDoc body
- * for author / revision info (via `@asciidoc-js/reasciidoc`) and, if present,
+ * for author / revision info (via `@asciidoc-js/adast-util-from-asciidoc`) and, if present,
  * injects a `last_update` object that Docusaurus renders as
  * "Last updated by … on …".
  */
 
 // Lazy-loaded to avoid top-level ESM import (Docusaurus config is loaded
-// via jiti/CJS, but @asciidoc-js/reasciidoc is ESM-only).
+// via jiti/CJS, but @asciidoc-js/adast-util-from-asciidoc is ESM-only).
 let _fromAsciidoc;
 async function getFromAsciidoc() {
   if (!_fromAsciidoc) {
-    const mod = await import('@asciidoc-js/reasciidoc');
+    const mod = await import('@asciidoc-js/adast-util-from-asciidoc');
     _fromAsciidoc = mod.fromAsciidoc;
   }
   return _fromAsciidoc;
