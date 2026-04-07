@@ -1,6 +1,6 @@
 {
   "name": "@asciidoc-js/docusaurus-asciidoc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Docusaurus plugin to support AsciiDoc (.adoc) files via @asciidoc-js/reasciidoc-remark",
   "license": "MIT",
   "type": "module",
