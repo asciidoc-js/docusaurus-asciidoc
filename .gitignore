@@ -6,3 +6,5 @@ dist/
 .AppleDouble
 .LSOverride
 Thumbs.db
+
+*.tsbuildinfo
