@@ -14,7 +14,7 @@
 
 import { fromAsciidoc } from '@asciidoc-js/adast-util-from-asciidoc';
 import { toMdast } from '@asciidoc-js/adast-util-to-mdast';
-import { mdastRegistry } from './registry.js';
+import { mdastRegistry, getOrParse } from './registry.js';
 
 const FRONT_MATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
 
@@ -35,12 +35,14 @@ function splitFrontMatter(source) {
 export default function asciidocLoader(source) {
   const { frontMatter, body } = splitFrontMatter(source);
 
-  // Parse AsciiDoc → adast → mdast
-  const asciiTree = fromAsciidoc(body);
+  // Get or parse the adast tree and cache it in the registry
+  const asciiTree = getOrParse(this.resourcePath, 'adastTree', body, fromAsciidoc);
+
+  // Convert to mdast
   const mdastTree = toMdast(asciiTree);
 
-  // Store the tree for the remark plugin to pick up
-  mdastRegistry.set(this.resourcePath, mdastTree);
+  // Store both trees for downstream use (remark plugin uses mdast, parseFrontMatter uses adast)
+  mdastRegistry.set(this.resourcePath, { mdastTree, adastTree: asciiTree });
 
   // Return only the front-matter.  The MDX parser will produce a
   // near-empty tree from this; our remark plugin replaces it.

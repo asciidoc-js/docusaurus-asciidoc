@@ -21,16 +21,9 @@
  * "Last updated by … on …".
  */
 
-// Lazy-loaded to avoid top-level ESM import (Docusaurus config is loaded
-// via jiti/CJS, but @asciidoc-js/adast-util-from-asciidoc is ESM-only).
-let _fromAsciidoc;
-async function getFromAsciidoc() {
-  if (!_fromAsciidoc) {
-    const mod = await import('@asciidoc-js/adast-util-from-asciidoc');
-    _fromAsciidoc = mod.fromAsciidoc;
-  }
-  return _fromAsciidoc;
-}
+// Import the registry utilities to access pre-parsed adast trees
+import { getOrParse } from './registry.js';
+import { fromAsciidoc } from '@asciidoc-js/adast-util-from-asciidoc';
 
 /**
  * Build a Docusaurus `last_update` front-matter object from an adast
@@ -72,17 +65,17 @@ export function createParseFrontMatter() {
     }
 
     try {
-      // `result.content` is the file body after the YAML block has been
-      // stripped by the default parser.
-      const fromAsciidoc = await getFromAsciidoc();
-      const asciiTree = fromAsciidoc(result.content);
-      const lastUpdate = buildLastUpdate(asciiTree);
+      // Get or parse the adast tree and cache it in the registry
+      const adastTree = getOrParse(params.filePath, 'adastTree', result.content, fromAsciidoc);
+
+      // Extract last_update metadata from adast
+      const lastUpdate = buildLastUpdate(adastTree);
       if (lastUpdate) {
         result.frontMatter.last_update = lastUpdate;
       }
     } catch {
-      // If AsciiDoc parsing fails here we silently skip — the real error
-      // will surface during the webpack build when the loader runs.
+      // If something goes wrong, silently skip — the real error will
+      // surface during the webpack build when the loader runs.
     }
 
     return result;

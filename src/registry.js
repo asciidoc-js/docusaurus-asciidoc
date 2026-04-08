@@ -14,3 +14,25 @@ if (!globalThis[REGISTRY_KEY]) {
 }
 
 export const mdastRegistry = globalThis[REGISTRY_KEY];
+
+/**
+ * Get a property from the registry, or parse and cache it if not present.
+ *
+ * @param {string} filePath - The file path key in the registry
+ * @param {string} property - The property name to get/store (e.g., 'adastTree', 'mdastTree')
+ * @param {string} content - The content to parse if not in registry
+ * @param {Function} parseFunction - The parser function to call if content not cached
+ * @returns {*} The cached or newly parsed value
+ */
+export function getOrParse(filePath, property, content, parseFunction) {
+  let stored = mdastRegistry.get(filePath);
+  let value = stored?.[property];
+
+  // If not in registry, parse and cache it
+  if (value === undefined) {
+    value = parseFunction(content);
+    mdastRegistry.set(filePath, { ...stored, [property]: value });
+  }
+
+  return value;
+}

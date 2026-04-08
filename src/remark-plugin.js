@@ -26,8 +26,11 @@ export default function remarkAsciidocInject() {
     const filePath = file.path ?? file.history?.[0];
     if (!filePath) return;
 
-    const mdastTree = mdastRegistry.get(filePath);
-    if (!mdastTree) return;
+    const stored = mdastRegistry.get(filePath);
+    if (!stored) return;
+
+    // Extract mdast from stored object (or handle legacy single-tree format)
+    const mdastTree = stored.mdastTree ?? stored;
 
     // Replace the tree content in-place
     tree.children = mdastTree.children;
