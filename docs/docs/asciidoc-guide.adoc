@@ -1,0 +1,163 @@
+---
+sidebar_position: 2
+title: AsciiDoc Guide
+description: Comprehensive guide to AsciiDoc syntax
+---
+
+= AsciiDoc Syntax Guide
+
+This guide covers the essential AsciiDoc syntax you'll need to write documentation.
+
+== Headings
+
+AsciiDoc uses equals signs for headings:
+
+[source,asciidoc]
+----
+= Document Title (Level 0)
+== Level 1 Heading
+=== Level 2 Heading
+==== Level 3 Heading
+===== Level 4 Heading
+====== Level 5 Heading
+----
+
+== Text Formatting
+
+You can format text in various ways:
+
+* `*bold text*` renders as *bold text*
+* `_italic text_` renders as _italic text_
+* `+monospace text+` renders as +monospace text+
+* `*_bold italic_*` renders as *_bold italic_*
+* `^superscript^` renders as ^superscript^
+* `~subscript~` renders as ~subscript~
+* `[line-through]#struck through#` renders as [line-through]#struck through#
+
+== Lists
+
+=== Unordered Lists
+
+[source,asciidoc]
+----
+* Item 1
+* Item 2
+** Nested item 2.1
+** Nested item 2.2
+* Item 3
+----
+
+Results in:
+
+* Item 1
+* Item 2
+** Nested item 2.1
+** Nested item 2.2
+* Item 3
+
+=== Ordered Lists
+
+[source,asciidoc]
+----
+. First item
+. Second item
+.. Nested item 2.1
+.. Nested item 2.2
+. Third item
+----
+
+Results in:
+
+. First item
+. Second item
+.. Nested item 2.1
+.. Nested item 2.2
+. Third item
+
+=== Description Lists
+
+[source,asciidoc]
+----
+term:: definition
+another term:: another definition
+----
+
+Results in:
+
+term:: definition
+another term:: another definition
+
+== Links
+
+Create links using:
+
+[source,asciidoc]
+----
+https://example.com[Link text]
+link:path/to/file.adoc[Internal link]
+xref:filename.adoc[Cross-reference]
+----
+
+== Code Blocks
+
+Use listing blocks for code:
+
+[source,asciidoc]
+----
+[source,javascript]
+----
+console.log('Hello, World!');
+
+const greeting = (name) => {
+  return `Hello, ${name}!`;
+};
+----
+----
+
+This renders as:
+
+[source,javascript]
+----
+console.log('Hello, World!');
+
+const greeting = (name) => {
+  return `Hello, ${name}!`;
+};
+----
+
+== Inline Code
+
+Use backticks for inline code: `const x = 42;`
+
+== Quotes and Attributions
+
+[quote, Author Name, Source Title]
+____
+This is a block quote. It can span multiple lines.
+____
+
+== Admonitions
+
+AsciiDoc supports several admonition types:
+
+NOTE: This is a note. Use it for supplementary information.
+
+TIP: This is a tip. Use it for helpful advice.
+
+WARNING: This is a warning. Use it for important cautions.
+
+IMPORTANT: This is important information.
+
+CAUTION: This requires caution.
+
+== Sections with IDs
+
+[#custom-id]
+== Section with Custom ID
+
+You can reference this section using `xref:custom-id[]`
+
+== More Resources
+
+For a complete AsciiDoc reference, visit:
+https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc Language Documentation]

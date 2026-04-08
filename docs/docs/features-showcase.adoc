@@ -1,0 +1,224 @@
+---
+sidebar_position: 4
+title: Features Showcase
+description: Showcase of plugin capabilities and features
+---
+
+= Features Showcase
+
+This page demonstrates the key capabilities of the `@asciidoc-js/docusaurus-asciidoc` plugin.
+
+== Mixed Format Support
+
+This project uses both Markdown and AsciiDoc seamlessly:
+
+* **Markdown**: link:markdown-example.md[Traditional Markdown support]
+* **AsciiDoc**: This document and most others
+* **MDX**: Full React component support (when needed)
+
+== Advanced AsciiDoc Features
+
+=== Complex Tables with Formatting
+
+[cols="1,2,3", options="header"]
+|===
+| Feature | AsciiDoc Syntax | Rendered Output
+
+| **Bold Text**
+| `*bold*`
+| *bold*
+
+| **Code Blocks**
+| `[source,javascript]`
+| See examples below
+
+| **Cross-references**
+| `xref:filename.adoc[]`
+| xref:quick-start.adoc[Quick Start]
+
+| **Includes**
+| `include::file.adoc[]`
+| Content reuse across docs
+|===
+
+=== Syntax Highlighting Showcase
+
+==== JavaScript with Callouts
+
+[source,javascript]
+----
+const plugin = require('@asciidoc-js/docusaurus-asciidoc');
+
+module.exports = {
+  plugins: [plugin], // <1>
+  presets: [
+    ['classic', {
+      docs: {
+        include: ['**/*.{md,mdx,adoc}'], // <2>
+      },
+    }],
+  ],
+};
+----
+<1> Add the plugin to your config
+<2> Include .adoc files in docs processing
+
+==== Python Example
+
+[source,python]
+----
+def setup_plugin():
+    """Configure the AsciiDoc plugin for Docusaurus"""
+    config = {
+        'plugins': ['@asciidoc-js/docusaurus-asciidoc'],
+        'presets': [{
+            'classic': {
+                'docs': {
+                    'include': ['**/*.{md,mdx,adoc}']
+                }
+            }
+        }]
+    }
+    return config
+----
+
+==== YAML Configuration
+
+[source,yaml]
+----
+# docusaurus.config.js (partial)
+plugins:
+  - '@asciidoc-js/docusaurus-asciidoc'
+
+presets:
+  - classic:
+      docs:
+        include:
+          - '**/*.{md,mdx,adoc}'
+        sidebarPath: './sidebars.js'
+----
+
+== Front Matter Support
+
+AsciiDoc files support YAML front matter just like Markdown:
+
+[source,yaml]
+----
+---
+title: Features Showcase
+description: Showcase of plugin capabilities and features
+sidebar_position: 4
+---
+----
+
+This enables:
+
+* Custom titles and descriptions
+* Sidebar positioning
+* SEO metadata
+* Custom properties
+
+== Responsive Design
+
+The plugin works with Docusaurus's responsive themes:
+
+* Mobile-friendly navigation
+* Responsive tables and code blocks
+* Theme switching (light/dark mode)
+* Accessible design patterns
+
+== Performance Benefits
+
+=== Direct AST Processing
+
+Unlike other solutions that convert AsciiDoc → Markdown → HTML, this plugin:
+
+. Parses AsciiDoc directly to AST
+. Integrates with Docusaurus's MDX pipeline
+. Avoids markdown serialization round-trips
+. Maintains full Docusaurus feature compatibility
+
+=== Benchmark Comparison
+
+[cols="1,2,2", options="header"]
+|===
+| Approach | Steps | Performance
+
+| Traditional
+| AsciiDoc → Markdown → MDX → HTML
+| Slower (multiple conversions)
+
+| **This Plugin**
+| AsciiDoc → AST → MDX → HTML
+| **Faster** (direct AST integration)
+|===
+
+== Integration Examples
+
+=== With Docusaurus Plugins
+
+Works seamlessly with popular Docusaurus plugins:
+
+* **Search**: Content is fully searchable
+* **Versioning**: Versioned documentation support
+* **i18n**: Internationalization ready
+* **Blog**: AsciiDoc in blog posts
+
+=== With Themes
+
+Compatible with all Docusaurus themes:
+
+* **Classic Theme**: Default Docusaurus theme
+* **Custom Themes**: Fully customizable
+* **Dark Mode**: Automatic theme switching
+* **RTL Support**: Right-to-left language support
+
+== Real-World Usage
+
+=== Documentation Types
+
+* **API Documentation**: Technical reference docs
+* **User Guides**: Step-by-step tutorials
+* **Developer Guides**: Advanced implementation details
+* **Blog Posts**: Technical articles and announcements
+
+=== Industry Applications
+
+* **Open Source Projects**: Comprehensive documentation
+* **Enterprise Software**: Internal developer portals
+* **Educational Content**: Course materials and tutorials
+* **Technical Writing**: Professional documentation teams
+
+== Migration Path
+
+=== From Markdown
+
+. Install the plugin
+. Configure `include: ['**/*.{md,mdx,adoc}']`
+. Rename `.md` files to `.adoc` as needed
+. Update syntax to AsciiDoc format
+
+=== From Other Tools
+
+. Export content to AsciiDoc format
+. Set up Docusaurus with this plugin
+. Configure routing and navigation
+. Deploy and test
+
+== Community and Support
+
+* **GitHub**: https://github.com/asciidoc-js/docusaurus-asciidoc
+* **Issues**: Bug reports and feature requests
+* **Discussions**: Community questions and ideas
+* **Documentation**: This site and README
+
+== Getting Started
+
+Ready to try it out?
+
+. link:quick-start.adoc[Quick Start Guide] - 5 minutes to running
+. link:plugin-overview.adoc[Plugin Overview] - Technical details
+. link:advanced-examples.adoc[Advanced Examples] - Deep dive features
+
+The plugin is production-ready and actively maintained! 🚀
+</content>

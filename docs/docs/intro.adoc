@@ -1,0 +1,63 @@
+---
+sidebar_position: 1
+title: Getting Started
+description: Introduction to the AsciiDoc Docusaurus plugin
+---
+
+= Getting Started
+
+Welcome to the AsciiDoc Docusaurus Example! This project demonstrates how to use the `@asciidoc-js/docusaurus-asciidoc` plugin to write documentation in AsciiDoc format.
+
+== What is AsciiDoc?
+
+AsciiDoc is a lightweight markup language that is more powerful and flexible than Markdown. It supports:
+
+* Advanced formatting options
+* Complex tables
+* Includes and system macros
+* Source code highlighting
+* And much more
+
+== What is Docusaurus?
+
+Docusaurus is a project for building, deploying, and maintaining open source project websites easily.
+
+== Key Features
+
+This plugin provides:
+
+[horizontal]
+Native AsciiDoc Support:: Write documentation using AsciiDoc syntax
+Seamless Integration:: Works with existing Docusaurus themes and plugins
+Performance:: No markdown serialization round-trips
+Front Matter Support:: YAML front matter for metadata
+Automatic TOC:: Table of contents generation from headings
+
+== Getting Started
+
+To use this plugin in your Docusaurus project:
+
+. Install the plugin: `npm install @asciidoc-js/docusaurus-asciidoc`
+. Add it to your `docusaurus.config.js`:
+
+[source,javascript]
+----
+plugins: ['@asciidoc-js/docusaurus-asciidoc'],
+
+presets: [
+  ['classic', {
+    docs: {
+      include: ['**/*.{md,mdx,adoc}'],
+    },
+  }],
+],
+----
+
+. Create `.adoc` files in your docs directory
+. Start building with AsciiDoc!
+
+== Next Steps
+
+* Check out the link:asciidoc-guide.adoc[AsciiDoc Guide] to learn the syntax
+* Explore the link:examples/code-blocks.adoc[Code Blocks Example]
+* Mix AsciiDoc and Markdown in the same project

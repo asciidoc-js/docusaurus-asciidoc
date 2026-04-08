@@ -1,0 +1,147 @@
+---
+sidebar_position: 2
+title: Quick Start
+description: Get started with the AsciiDoc plugin quickly
+---
+
+= Quick Start Guide
+
+Get up and running with the `@asciidoc-js/docusaurus-asciidoc` plugin in minutes.
+
+== Prerequisites
+
+* Node.js 18 or later
+* npm or yarn
+* A Docusaurus project (v3.0+)
+
+== Installation
+
+=== Option 1: From npm
+
+[source,bash]
+----
+npm install @asciidoc-js/docusaurus-asciidoc
+----
+
+=== Option 2: From GitHub
+
+[source,bash]
+----
+npm install https://github.com/asciidoc-js/docusaurus-asciidoc.git
+----
+
+== Configuration
+
+=== 1. Add the Plugin
+
+Edit your `docusaurus.config.js`:
+
+[source,javascript]
+----
+// ... existing config
+plugins: [
+  '@asciidoc-js/docusaurus-asciidoc',
+],
+
+presets: [
+  ['classic', {
+    docs: {
+      include: ['**/*.{md,mdx,adoc}'], // Add .adoc to supported extensions
+    },
+  }],
+],
+// ... rest of config
+----
+
+=== 2. Update Sidebar (Optional)
+
+If you have a `sidebars.js`, no changes needed - it automatically includes `.adoc` files.
+
+=== 3. Create Your First AsciiDoc File
+
+Create `docs/hello.adoc`:
+
+[source,asciidoc]
+----
+---
+title: Hello AsciiDoc
+description: My first AsciiDoc document
+---
+
+= Hello AsciiDoc!
+
+Welcome to AsciiDoc in Docusaurus!
+
+== Features
+
+* Native AsciiDoc syntax
+* Works with Docusaurus themes
+* Supports front matter
+* Automatic table of contents
+
+[source,javascript]
+----
+console.log('Hello, World!');
+----
+----
+
+== Start Development Server
+
+[source,bash]
+----
+npm start
+----
+
+Visit `http://localhost:3000/docs/hello` to see your AsciiDoc document!
+
+== Project Structure
+
+After setup, your project should look like:
+
+[source,text]
+----
+my-docusaurus-site/
+├── docusaurus.config.js    # Plugin configured here
+├── docs/
+│   ├── intro.md           # Existing Markdown
+│   ├── hello.adoc         # New AsciiDoc file
+│   └── ...
+├── src/
+├── package.json
+└── ...
+----
+
+== Next Steps
+
+* Explore the link:asciidoc-guide.adoc[AsciiDoc Syntax Guide]
+* Check out link:../examples/code-blocks.adoc[Code Examples]
+* Learn about link:advanced-examples.adoc[Advanced Features]
+
+== Troubleshooting
+
+=== Plugin Not Loading
+
+Make sure the plugin is listed in your `docusaurus.config.js`:
+
+[source,javascript]
+----
+plugins: ['@asciidoc-js/docusaurus-asciidoc'],
+----
+
+=== Files Not Found
+
+Ensure your docs include pattern includes `.adoc`:
+
+[source,javascript]
+----
+docs: {
+  include: ['**/*.{md,mdx,adoc}'],
+},
+----
+
+=== Build Errors
+
+Check that you're using Docusaurus v3.0+ and Node.js 18+.
+
+For more help, see the link:../README.md[README] or open an issue on GitHub.
+</content>

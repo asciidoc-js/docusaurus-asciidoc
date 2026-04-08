@@ -1,0 +1,148 @@
+---
+sidebar_position: 1
+title: Code Blocks Example
+description: Examples of code blocks in AsciiDoc
+---
+
+= Code Blocks Example
+
+This page demonstrates various ways to include code in AsciiDoc documents.
+
+== Basic Code Block
+
+A simple code block with line numbers:
+
+[source,python,linenums]
+----
+def fibonacci(n):
+    """Generate Fibonacci sequence up to n"""
+    a, b = 0, 1
+    while a < n:
+        yield a
+        a, b = b, a + b
+
+# Usage
+for num in fibonacci(10):
+    print(num)
+----
+
+== JavaScript Example
+
+[source,javascript]
+----
+// Define a function
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+// Use it
+console.log(greet('World'));
+
+// Or with arrow functions
+const greeting = (name) => `Hello, ${name}!`;
+console.log(greeting('AsciiDoc'));
+----
+
+== HTML/CSS Example
+
+[source,html]
+----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+</body>
+</html>
+----
+
+== Java Example
+
+[source,java]
+----
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+----
+
+== YAML Configuration Example
+
+[source,yaml]
+----
+name: My Project
+version: 1.0.0
+description: A sample project configuration
+
+dependencies:
+  - react: "^18.0.0"
+  - lodash: "^4.17.0"
+
+scripts:
+  start: npm run dev
+  build: npm run build
+  test: npm test
+----
+
+== Shell/Bash Example
+
+[source,bash]
+----
+#!/bin/bash
+
+# List files in current directory
+ls -la
+
+# Create a new directory
+mkdir -p new_project/src
+
+# Install dependencies
+cd new_project
+npm install
+
+# Start development server
+npm start
+----
+
+== Highlighting Specific Lines
+
+[source,javascript,highlight=2;4]
+----
+function calculate(a, b) {
+  const sum = a + b;
+  const product = a * b;
+  const difference = a - b;
+  return { sum, product, difference };
+}
+----
+
+The lines 2 and 4 are highlighted above.
+
+== Callouts
+
+[source,javascript]
+----
+function example() {
+  const x = 10;      // <1>
+  const y = 20;      // <2>
+  return x + y;      // <3>
+}
+----
+
+<1> Declare first variable
+<2> Declare second variable
+<3> Return their sum
+
+== Inline Code
+
+You can also use inline code like `const x = 42;` or `function foo()` directly in your text.

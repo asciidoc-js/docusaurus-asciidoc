@@ -1,0 +1,333 @@
+---
+sidebar_position: 3
+title: Advanced Examples
+description: Advanced AsciiDoc features and examples
+---
+
+= Advanced AsciiDoc Examples
+
+This page demonstrates advanced AsciiDoc features that work seamlessly with the Docusaurus plugin.
+
+== Cross-References
+
+AsciiDoc supports cross-references between documents using the `xref:` macro.
+
+=== Internal References
+
+Reference other documents:
+
+[source,asciidoc]
+----
+See the xref:quick-start.adoc[Quick Start Guide] for installation instructions.
+
+For syntax help, check xref:asciidoc-guide.adoc[the AsciiDoc Guide].
+----
+
+Results in:
+
+See the xref:quick-start.adoc[Quick Start Guide] for installation instructions.
+
+For syntax help, check xref:asciidoc-guide.adoc[the AsciiDoc Guide].
+
+=== Section References
+
+Reference specific sections using anchors:
+
+[source,asciidoc]
+----
+For code examples, see xref:examples/code-blocks.adoc#javascript-example[JavaScript Examples].
+----
+
+== Includes
+
+Include content from other files using the `include::` directive.
+
+=== Including Files
+
+[source,asciidoc]
+----
+include::partial$common-footer.adoc[]
+----
+
+=== Including Sections
+
+[source,asciidoc]
+----
+include::quick-start.adoc[tags=installation]
+----
+
+== Complex Tables
+
+=== Multi-line Cells
+
+[source,asciidoc]
+----
+[cols="1,2"]
+|===
+| Feature | Description
+
+| Cross-references
+| Link between documents +
+xref:quick-start.adoc[See Quick Start]
+
+| Includes
+| Reuse content across documents +
+`include::file.adoc[]`
+
+| Tables
+| Complex table formatting +
+with multi-line content
+|===
+----
+
+Results in:
+
+[cols="1,2"]
+|===
+| Feature | Description
+
+| Cross-references
+| Link between documents +
+xref:quick-start.adoc[See Quick Start]
+
+| Includes
+| Reuse content across documents +
+`include::file.adoc[]`
+
+| Tables
+| Complex table formatting +
+with multi-line content
+|===
+
+=== Advanced Table Formatting
+
+[source,asciidoc]
+----
+[cols="1,1,1", options="header"]
+|===
+| Component | Version | Status
+
+| Plugin
+| 1.0.0
+| ✓ Stable
+
+| Docusaurus
+| 3.0+
+| ✓ Compatible
+
+| Node.js
+| 18+
+| ✓ Required
+|===
+----
+
+Results in:
+
+[cols="1,1,1", options="header"]
+|===
+| Component | Version | Status
+
+| Plugin
+| 1.0.0
+| ✓ Stable
+
+| Docusaurus
+| 3.0+
+| ✓ Compatible
+
+| Node.js
+| 18+
+| ✓ Required
+|===
+
+== Admonitions with Icons
+
+AsciiDoc supports rich admonitions:
+
+=== Note with Custom Title
+
+[NOTE]
+.Custom Title
+====
+This is a note with a custom title.
+====
+
+=== Warning with Multiple Paragraphs
+
+[WARNING]
+====
+This is a warning.
+
+It can span multiple paragraphs and include:
+
+* Lists
+* Links
+* Code blocks
+====
+
+=== Tip with Complex Content
+
+[TIP]
+.Complex Tip
+====
+Here's a tip with complex content:
+
+[source,javascript]
+----
+function example() {
+  console.log('This is highlighted code in an admonition');
+}
+----
+
+You can include *formatting*, `code`, and more.
+====
+
+== Mathematical Expressions
+
+If you have MathJax configured, you can include mathematical expressions:
+
+[source,asciidoc]
+----
+The Pythagorean theorem: \(a^2 + b^2 = c^2\)
+
+\[ \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi} \]
+----
+
+== Conditional Content
+
+AsciiDoc supports conditional content based on attributes:
+
+[source,asciidoc]
+----
+ifdef::env-github[]
+This content only appears on GitHub.
+endif::[]
+
+ifndef::env-site[]
+This content is hidden on the live site.
+endif::[]
+----
+
+== Custom Attributes
+
+Define and use custom attributes:
+
+[source,asciidoc]
+----
+// Define attributes
+:project-name: Docusaurus AsciiDoc Plugin
+:version: 1.0.0
+
+Welcome to {project-name} v{version}!
+
+The current version is {version}.
+----
+
+Results in:
+
+Welcome to {project-name} v{version}!
+
+The current version is {version}.
+
+== Source Code with Callouts
+
+[source,javascript]
+----
+// Define a simple function
+function greet(name) {        // <1>
+  if (!name) {                 // <2>
+    return 'Hello, World!';    // <3>
+  }
+  return `Hello, ${name}!`;    // <4>
+}
+
+// Usage
+console.log(greet());         // <5>
+console.log(greet('AsciiDoc')); // <6>
+----
+<1> Function definition with parameter
+<2> Check if name is provided
+<3> Default greeting
+<4> Personalized greeting
+<5> Call without arguments
+<6> Call with arguments
+
+== Diagrams (with Mermaid)
+
+If Mermaid is configured, you can include diagrams:
+
+[source,mermaid]
+----
+graph TD
+    A[AsciiDoc File] --> B[Plugin Loader]
+    B --> C[AST Processing]
+    C --> D[Docusaurus Site]
+----
+
+== File Includes Example
+
+Here's how you might structure reusable content:
+
+=== Creating a Partial File
+
+Create `docs/_partials/common-links.adoc`:
+
+[source,asciidoc]
+----
+// Common links used across documentation
+:github-url: https://github.com/asciidoc-js/docusaurus-asciidoc
+:docs-url: /docs
+
+* link:{github-url}[GitHub Repository]
+* link:{docs-url}/quick-start.adoc[Quick Start Guide]
+* link:{docs-url}/asciidoc-guide.adoc[AsciiDoc Guide]
+----
+
+=== Including the Partial
+
+[source,asciidoc]
+----
+== Related Links
+
+include::_partials/common-links.adoc[]
+----
+
+== Advanced Code Features
+
+=== Multiple Languages in One Block
+
+[source,javascript,python]
+----
+// JavaScript version
+function fibonacci(n) {
+  return n <= 1 ? n : fibonacci(n-1) + fibonacci(n-2);
+}
+
+// Python version
+def fibonacci(n):
+    return n if n <= 1 else fibonacci(n-1) + fibonacci(n-2)
+----
+
+=== Code with Line Numbers and Highlighting
+
+[source,javascript,linenums,highlight=2-4]
+----
+import React from 'react';
+
+function AsciiDocComponent({ content }) {
+  return (
+    <div className="asciidoc-content">
+      {content}
+    </div>
+  );
+}
+
+export default AsciiDocComponent;
+----
+
+== Next Steps
+
+* Return to the link:plugin-overview.adoc[Plugin Overview]
+* Check out link:../examples/lists-and-tables.adoc[More Table Examples]
+* Explore the link:asciidoc-guide.adoc[Complete Syntax Guide]
+</content>

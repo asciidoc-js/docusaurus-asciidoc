@@ -1,0 +1,192 @@
+---
+sidebar_position: 2
+title: Lists and Tables
+description: Advanced list and table examples in AsciiDoc
+---
+
+= Lists and Tables
+
+This page showcases advanced list and table features in AsciiDoc.
+
+== Complex Lists
+
+=== Multi-level Lists
+
+[source,asciidoc]
+----
+. First item
+. Second item
+  * Unordered sub-item 1
+  * Unordered sub-item 2
+    ** Deeper level 1
+    ** Deeper level 2
+  * Unordered sub-item 3
+. Third item
+----
+
+Results in:
+
+. First item
+. Second item
+  * Unordered sub-item 1
+  * Unordered sub-item 2
+    ** Deeper level 1
+    ** Deeper level 2
+  * Unordered sub-item 3
+. Third item
+
+=== Labeled Lists
+
+[source,asciidoc]
+----
+API Key::
+  Your unique API authentication key
+Secret Token::
+  Keep this secret and secure
+Endpoint::
+  The API base URL
+  https://api.example.com
+----
+
+Results in:
+
+API Key::
+  Your unique API authentication key
+Secret Token::
+  Keep this secret and secure
+Endpoint::
+  The API base URL
+  https://api.example.com
+
+== Simple Tables
+
+[source,asciidoc]
+----
+|===
+| Column 1 | Column 2 | Column 3
+
+| A | B | C
+| D | E | F
+| G | H | I
+|===
+----
+
+Results in:
+
+|===
+| Column 1 | Column 2 | Column 3
+
+| A | B | C
+| D | E | F
+| G | H | I
+|===
+
+== Detailed Tables
+
+Here's a more complex table with headers and formatting:
+
+[source,asciidoc]
+----
+[cols="1,2,3"]
+|===
+h| Feature h| Description h| Status
+
+| Support
+| Number of support channels
+| ✓ Available
+
+| Documentation
+| Comprehensive guides and examples
+| ✓ Available
+
+| Community
+| Active user community
+| ✓ Available
+
+| Plugins
+| Extensible plugin system
+| ✓ Available
+|===
+----
+
+Results in:
+
+[cols="1,2,3"]
+|===
+h| Feature h| Description h| Status
+
+| Support
+| Number of support channels
+| ✓ Available
+
+| Documentation
+| Comprehensive guides and examples
+| ✓ Available
+
+| Community
+| Active user community
+| ✓ Available
+
+| Plugins
+| Extensible plugin system
+| ✓ Available
+|===
+
+== Table with Merged Cells
+
+[source,asciidoc]
+----
+[cols="1,1,1"]
+|===
+| Header 1 | Header 2 | Header 3
+
+| Row 1, Col 1
+| Row 1, Col 2
+| Row 1, Col 3
+
+2+| Spanning 2 columns | Single column
+
+| Single | Single | Single
+|===
+----
+
+Results in:
+
+[cols="1,1,1"]
+|===
+| Header 1 | Header 2 | Header 3
+
+| Row 1, Col 1
+| Row 1, Col 2
+| Row 1, Col 3
+
+2+| Spanning 2 columns | Single column
+
+| Single | Single | Single
+|===
+
+== Feature Comparison Table
+
+[cols="1,1,1,1"]
+|===
+4+h| Format Comparison
+
+h| Format h| Ease of Use h| Power h| Compatibility
+
+| Markdown
+| ⭐⭐⭐⭐⭐
+| ⭐⭐
+| ⭐⭐⭐⭐⭐
+
+| AsciiDoc
+| ⭐⭐⭐
+| ⭐⭐⭐⭐⭐
+| ⭐⭐⭐⭐
+
+| reStructuredText
+| ⭐⭐
+| ⭐⭐⭐⭐
+| ⭐⭐⭐
+|===
+
+This table shows a comparison of different documentation formats.

@@ -23,7 +23,5 @@
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.1.0"
   },
-  "devDependencies": {
-    "@docusaurus/module-shim": "^3.0.0"
-  }
+  "devDependencies": {}
 }

@@ -1,0 +1,106 @@
+---
+sidebar_position: 1
+title: Plugin Overview
+description: Overview of the @asciidoc-js/docusaurus-asciidoc plugin
+---
+
+= Plugin Overview
+
+The `@asciidoc-js/docusaurus-asciidoc` plugin enables native AsciiDoc support in Docusaurus projects, allowing you to write documentation using AsciiDoc syntax alongside traditional Markdown.
+
+== What It Does
+
+This plugin seamlessly integrates AsciiDoc (`.adoc`) files into the Docusaurus ecosystem by:
+
+* **Direct AST Processing**: Converts AsciiDoc to MDAST (Markdown AST) without intermediate markdown serialization
+* **Zero Breaking Changes**: Existing Markdown and MDX files continue to work unchanged
+* **Full Feature Support**: Supports all Docusaurus features (themes, plugins, routing, TOC generation)
+* **Performance Optimized**: Avoids markdown round-trip conversions for better performance
+
+== Architecture
+
+The plugin uses a sophisticated three-stage architecture:
+
+. **Webpack Loader** (`loader.js`): Parses `.adoc` files to AST and stores in shared registry
+. **Remark Plugin** (`remark-plugin.js`): Injects parsed AST into MDX pipeline
+. **MDX Integration**: Leverages Docusaurus's existing processing for theming and plugins
+
+[source,mermaid]
+----
+graph TD
+    A[AsciiDoc File] --> B[Webpack Loader]
+    B --> C[AST Registry]
+    C --> D[Remark Plugin]
+    D --> E[MDX Pipeline]
+    E --> F[Docusaurus Site]
+----
+
+== Key Features
+
+[cols="1,2"]
+|===
+| Feature | Description
+
+| **Native AsciiDoc Support**
+| Write documentation using full AsciiDoc syntax including advanced formatting, tables, and includes
+
+| **Seamless Integration**
+| Works with existing Docusaurus themes, plugins, and configurations
+
+| **Performance Optimized**
+| Direct AST transformation avoids markdown serialization round-trips
+
+| **Front Matter Support**
+| Supports YAML front matter for metadata (title, description, sidebar position, etc.)
+
+| **Automatic TOC Generation**
+| Table of contents automatically generated from AsciiDoc headings
+
+| **Mixed Format Support**
+| Use `.md`, `.mdx`, and `.adoc` files in the same project
+|===
+
+== Configuration
+
+The plugin requires minimal configuration. Simply add it to your `docusaurus.config.js`:
+
+[source,javascript]
+----
+module.exports = {
+  plugins: ['@asciidoc-js/docusaurus-asciidoc'],
+  presets: [
+    ['classic', {
+      docs: {
+        include: ['**/*.{md,mdx,adoc}'], // Include .adoc files
+      },
+    }],
+  ],
+};
+----
+
+== File Support
+
+The plugin automatically processes files with these extensions:
+
+* `.adoc` - AsciiDoc files (primary target)
+* `.md` - Markdown files (unchanged)
+* `.mdx` - MDX files (unchanged)
+
+== Dependencies
+
+The plugin has minimal dependencies:
+
+* `@asciidoc-js/adast-util-from-asciidoc` - AsciiDoc to ADAST conversion
+* `@asciidoc-js/adast-util-to-mdast` - ADAST to MDAST conversion
+* `unist-util-visit` - AST traversal utility
+
+== Browser Compatibility
+
+Works in all modern browsers supported by Docusaurus. No additional polyfills required.
+
+== Next Steps
+
+* link:quick-start.adoc[Quick Start Guide] - Get up and running quickly
+* link:advanced-examples.adoc[Advanced Examples] - Explore advanced AsciiDoc features
+* link:../examples/code-blocks.adoc[Code Examples] - See code highlighting in action
+</content>
