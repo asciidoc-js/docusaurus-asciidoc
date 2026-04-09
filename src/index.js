@@ -28,6 +28,7 @@
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import remarkAsciidocInject from './remark-plugin.js';
+export { createParseFrontMatter } from './parseFrontMatter.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const loaderPath = resolve(__dirname, 'loader.js');
