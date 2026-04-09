@@ -1,6 +1,6 @@
 {
   "name": "@asciidoc-js/docusaurus-asciidoc",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Docusaurus plugin to support AsciiDoc (.adoc) files via @asciidoc-js ADAST utils",
   "license": "MIT",
   "repository": "https://github.com/asciidoc-js/docusaurus-asciidoc",
