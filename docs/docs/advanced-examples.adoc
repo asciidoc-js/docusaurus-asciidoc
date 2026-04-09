@@ -1,333 +1,903 @@
 ---
-sidebar_position: 3
 title: Advanced Examples
-description: Advanced AsciiDoc features and examples
+sidebar_position: 4
+description: An exhaustive demonstration of AsciiDoc features — deeply nested structures, mixed lists, tables, admonitions, inline formatting, and more.
 ---
+= Comprehensive AsciiDoc Demo
+John Doe <john.doe@example.com>; Jane Smith <jane.smith@example.com>
+v2.1, 2025-03-15: Expanded media section
 
-= Advanced AsciiDoc Examples
+This page exercises virtually every block and inline construct that the
+AsciiDoc-to-Docusaurus pipeline supports.  Use it as a stress-test _and_
+a living reference for authors.
 
-This page demonstrates advanced AsciiDoc features that work seamlessly with the Docusaurus plugin.
+== Inline Formatting Showcase
 
-== Cross-References
+Plain text can contain *bold*, _italic_, `monospaced`, *_bold italic_*,
+`*bold mono*`, _`italic mono`_, and *_`bold italic mono`_* combinations.
 
-AsciiDoc supports cross-references between documents using the `xref:` macro.
+You can also use #highlighted (marked)# text, ^superscript^ notation,
+~subscript~ notation, and even combine them: *bold with ^superscript^*
+or _italic with ~subscript~ inside_.
 
-=== Internal References
+Inline formatting can span
+multiple words: *this entire phrase is bold* and _this entire
+phrase is italic_ — they do not need to be single words.
 
-Reference other documents:
+=== Links and Cross-References
 
-[source,asciidoc]
+External links: https://asciidoctor.org[Asciidoctor home],
+https://docs.asciidoctor.org/asciidoc/latest/[AsciiDoc Language Docs],
+and a bare URL https://example.com that gets auto-linked.
+
+An email link: mailto:hello@example.com[Send us mail].
+
+A cross-reference to another section: <<deep-nesting-stress-test>>.
+
+=== Escape and Special Characters
+
+Literal asterisks: \*not bold\*.  Literal underscores: \_not italic\_.
+An en-dash -- and an em-dash --- appear differently.  Ellipsis...
+and the `\->` arrow: ->.
+
+== Lists — Every Flavour
+
+=== Simple Unordered
+
+* Apples
+* Bananas
+* Cherries
+* Dates
+
+=== Simple Ordered
+
+. Wake up
+. Brush teeth
+. Eat breakfast
+. Go to work
+
+=== Nested Unordered (3 levels)
+
+* Fruits
+** Citrus
+*** Oranges
+*** Lemons
+*** Grapefruit
+** Berries
+*** Strawberries
+*** Blueberries
+*** Raspberries
+** Tropical
+*** Mango
+*** Papaya
+* Vegetables
+** Leafy greens
+*** Spinach
+*** Kale
+** Root vegetables
+*** Carrots
+*** Beets
+*** Turnips
+* Grains
+** Wheat
+** Rice
+** Oats
+
+=== Nested Ordered (3 levels)
+
+. Prepare the environment
+.. Install dependencies
+... Run `npm install`
+... Verify with `npm ls`
+.. Configure the project
+... Copy `.env.example` to `.env`
+... Set `DATABASE_URL`
+. Build the application
+.. Compile TypeScript
+... Run `npm run build`
+... Check `dist/` output
+.. Run linters
+... ESLint: `npm run lint`
+... Prettier: `npm run format:check`
+. Deploy
+.. Stage the release
+.. Push to production
+
+=== Mixed List Nesting (Unordered inside Ordered)
+
+. First major step
+* Sub-task A
+* Sub-task B
+** Detail of sub-task B
+* Sub-task C
+. Second major step
+* Another sub-task
+. Third major step
+
+=== Ordered inside Unordered
+
+* Planning phase
+. Gather requirements
+. Write specification
+. Review with stakeholders
+* Implementation phase
+. Set up repository
+. Write code
+. Write tests
+* Release phase
+. Tag version
+. Build artefacts
+. Publish
+
+=== Checklist (Task List)
+
+* [x] Design the database schema
+* [x] Implement the REST API
+* [ ] Write integration tests
+* [ ] Set up CI/CD pipeline
+* [x] Document the API
+* [ ] Performance benchmarks
+
+=== Description Lists
+
+CPU:: The brain of the computer that executes instructions.
+RAM:: Volatile memory used for temporary data storage while programs run.
+SSD:: A solid-state storage device with no moving parts, faster than HDDs.
+GPU:: A specialised processor for rendering graphics and parallel computation.
+
+=== Nested Description Lists
+
+Operating Systems::
+Linux:::
+A family of open-source Unix-like operating systems.
++
+Popular distributions include Ubuntu, Fedora, and Arch.
+macOS:::
+Apple's proprietary operating system for Mac computers.
+Windows:::
+Microsoft's widely-used operating system for PCs.
+Editors::
+Vim:::
+A modal, terminal-based text editor beloved by power users.
+VS Code:::
+A popular, extensible editor from Microsoft.
+Emacs:::
+An extensible editor often described as "an operating system that happens to edit text."
+
+=== Description List with Rich Descriptions
+
+Compile-time error::
+An error detected by the compiler *before* the program runs.
++
+Examples include syntax errors, type mismatches, and missing imports.
++
+[source,typescript]
 ----
-See the xref:quick-start.adoc[Quick Start Guide] for installation instructions.
-
-For syntax help, check xref:asciidoc-guide.adoc[the AsciiDoc Guide].
+// Type error: string is not assignable to number
+const x: number = "hello";
 ----
 
-Results in:
+Runtime error::
+An error that occurs *while* the program is executing.
++
+These are often harder to diagnose because they depend on specific inputs
+or environmental conditions.
++
+NOTE: Always add proper error handling for runtime failures.
 
-See the xref:quick-start.adoc[Quick Start Guide] for installation instructions.
+Logic error::
+The program runs without crashing but produces *incorrect results*.
++
+These are the hardest bugs to find because no error message is generated.
 
-For syntax help, check xref:asciidoc-guide.adoc[the AsciiDoc Guide].
+== Admonitions — All Five Types
 
-=== Section References
+NOTE: This is a *note* admonition.  Notes provide additional context that
+the reader might find useful but isn't critical to understanding the text.
 
-Reference specific sections using anchors:
+TIP: This is a *tip* admonition.  Tips suggest best practices or shortcuts
+that save time.
 
-[source,asciidoc]
+IMPORTANT: This is an *important* admonition.  Important blocks highlight
+information that the reader _must not_ overlook.
+
+WARNING: This is a *warning* admonition.  Warnings alert the reader to
+potential pitfalls or dangerous actions.
+
+CAUTION: This is a *caution* admonition.  Caution blocks indicate that
+an action may cause irreversible consequences.
+
+== Code Blocks
+
+=== Inline Code
+
+Use `Array.from()` to convert an iterable, or call `Object.keys(obj)` to
+get property names.  The `--verbose` flag enables debug output.
+
+=== Fenced Code Blocks with Language
+
+[source,typescript]
 ----
-For code examples, see xref:examples/code-blocks.adoc#javascript-example[JavaScript Examples].
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  roles: Role[];
+}
+
+type Role = "admin" | "editor" | "viewer";
+
+function greetUser(user: User): string {
+  const roleList = user.roles.join(", ");
+  return `Hello, ${user.name}! Your roles: ${roleList}`;
+}
 ----
 
-== Includes
-
-Include content from other files using the `include::` directive.
-
-=== Including Files
-
-[source,asciidoc]
+[source,python]
 ----
-include::partial$common-footer.adoc[]
+from dataclasses import dataclass, field
+from typing import List
+
+@dataclass
+class Config:
+    host: str = "localhost"
+    port: int = 8080
+    debug: bool = False
+    allowed_origins: List[str] = field(default_factory=list)
+
+    def base_url(self) -> str:
+        scheme = "http" if self.debug else "https"
+        return f"{scheme}://{self.host}:{self.port}"
 ----
 
-=== Including Sections
-
-[source,asciidoc]
+[source,sql]
 ----
-include::quick-start.adoc[tags=installation]
+SELECT
+    u.name,
+    u.email,
+    COUNT(o.id) AS order_count,
+    SUM(o.total)  AS lifetime_value
+FROM users u
+LEFT JOIN orders o ON o.user_id = u.id
+WHERE u.created_at >= '2025-01-01'
+GROUP BY u.id, u.name, u.email
+HAVING COUNT(o.id) > 0
+ORDER BY lifetime_value DESC
+LIMIT 20;
 ----
 
-== Complex Tables
-
-=== Multi-line Cells
-
-[source,asciidoc]
+[source,bash]
 ----
-[cols="1,2"]
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Building project..."
+npm ci
+npm run build
+
+echo "Running tests..."
+npm test -- --coverage
+
+echo "Done."
+----
+
+=== Code Block Without Language
+
+----
+This is a plain literal block.
+No syntax highlighting is applied.
+It preserves    whitespace    exactly.
+----
+
+== Block Quotes
+
+[quote, Linus Torvalds]
+____
+Talk is cheap. Show me the code.
+____
+
+[quote, Alan Turing]
+____
+We can only see a short distance ahead, but we can see plenty there that
+needs to be done.
+____
+
+[quote, Edsger W. Dijkstra]
+____
+Simplicity is prerequisite for reliability.
+____
+
+A nested blockquote scenario — a quote containing formatted text:
+
+[quote, Anonymous Developer]
+____
+The *best* code is _no code at all_.  Every new line of code you write is
+a line that has to be `debugged`, a line that has to be *read and understood*,
+and a line that might contain a ~subtle~ bug.
+____
+
+== Tables
+
+=== Simple Table
+
 |===
-| Feature | Description
+| Name | Language | Year
 
-| Cross-references
-| Link between documents +
-xref:quick-start.adoc[See Quick Start]
+| Linux
+| C
+| 1991
 
-| Includes
-| Reuse content across documents +
-`include::file.adoc[]`
-
-| Tables
-| Complex table formatting +
-with multi-line content
-|===
-----
-
-Results in:
-
-[cols="1,2"]
-|===
-| Feature | Description
-
-| Cross-references
-| Link between documents +
-xref:quick-start.adoc[See Quick Start]
-
-| Includes
-| Reuse content across documents +
-`include::file.adoc[]`
-
-| Tables
-| Complex table formatting +
-with multi-line content
-|===
-
-=== Advanced Table Formatting
-
-[source,asciidoc]
-----
-[cols="1,1,1", options="header"]
-|===
-| Component | Version | Status
-
-| Plugin
-| 1.0.0
-| ✓ Stable
-
-| Docusaurus
-| 3.0+
-| ✓ Compatible
+| Git
+| C
+| 2005
 
 | Node.js
-| 18+
-| ✓ Required
-|===
-----
+| C++/JavaScript
+| 2009
 
-Results in:
+| Rust
+| Rust (self-hosting)
+| 2010
 
-[cols="1,1,1", options="header"]
-|===
-| Component | Version | Status
-
-| Plugin
-| 1.0.0
-| ✓ Stable
-
-| Docusaurus
-| 3.0+
-| ✓ Compatible
-
-| Node.js
-| 18+
-| ✓ Required
+| Deno
+| Rust/TypeScript
+| 2018
 |===
 
-== Admonitions with Icons
+=== Table with Alignment and Header
 
-AsciiDoc supports rich admonitions:
+[cols="2,1,1,3"]
+|===
+| Project | Stars | License | Description
 
-=== Note with Custom Title
+| React
+| 220k
+| MIT
+| A JavaScript library for building user interfaces
 
-[NOTE]
-.Custom Title
-====
-This is a note with a custom title.
-====
+| Vue.js
+| 207k
+| MIT
+| The progressive JavaScript framework
 
-=== Warning with Multiple Paragraphs
+| Angular
+| 95k
+| MIT
+| A platform for building mobile and desktop web applications
 
-[WARNING]
-====
-This is a warning.
+| Svelte
+| 78k
+| MIT
+| Cybernetically enhanced web apps — compile-time framework
 
-It can span multiple paragraphs and include:
+| Solid
+| 32k
+| MIT
+| A declarative, efficient, and flexible JavaScript library for building UIs
+|===
 
-* Lists
-* Links
-* Code blocks
-====
+=== Table with Inline Formatting
 
-=== Tip with Complex Content
+|===
+| Feature | Status | Notes
 
-[TIP]
-.Complex Tip
-====
-Here's a tip with complex content:
+| *Bold* in cells
+| _Supported_
+| Inline `code` works too
 
+| Links in tables
+| https://example.com[Works]
+| Even ^super^ and ~sub~
+
+| Nested *_bold italic_*
+| #Highlighted#
+| All formatting composes
+|===
+
+=== Table with Lists in Cells
+
+|===
+| Component | Responsibilities | Tech Stack
+
+a|
+*API Gateway*
+a|
+* Route incoming requests
+* Authenticate tokens
+* Rate-limit clients
+* Log access metrics
+a|
+. Node.js
+. Express
+. Redis (rate limiting)
+
+a|
+*Worker Service*
+a|
+Processes background jobs:
+
+* Email dispatch
+* PDF generation
+* Data aggregation
+** Daily summaries
+** Weekly reports
+a|
+. Python
+. Celery
+. RabbitMQ
+
+a|
+*Database Layer*
+a|
+. Accept connections from services
+. Validate queries
+. Execute and return results
+
+NOTE: Always use connection pooling in production.
+a|
+* PostgreSQL 16
+* PgBouncer
+** Min pool: 5
+** Max pool: 50
+|===
+
+=== Table with Code Blocks in Cells
+
+|===
+| Language | Hello World | Notes
+
+a|
+*JavaScript*
+a|
 [source,javascript]
 ----
-function example() {
-  console.log('This is highlighted code in an admonition');
+function hello(name) {
+  console.log(`Hello, ${name}!`);
+}
+hello("world");
+----
+a|
+Runs in the browser _and_ on the server via Node.js.
+
+a|
+*Python*
+a|
+[source,python]
+----
+def hello(name: str) -> None:
+    print(f"Hello, {name}!")
+
+hello("world")
+----
+a|
+Dynamically typed with optional type hints.
+
+Use `python3` on most systems.
+
+a|
+*Rust*
+a|
+[source,rust]
+----
+fn hello(name: &str) {
+    println!("Hello, {}!", name);
+}
+
+fn main() {
+    hello("world");
+}
+----
+a|
+Compiled, memory-safe, and *blazingly fast*.
+|===
+
+=== Table with Mixed Block Content
+
+|===
+| Scenario | Input | Expected Output
+
+a|
+*Happy path*
+
+The standard success case.
+a|
+A valid request with all required fields:
+
+[source,json]
+----
+{
+  "name": "Alice",
+  "email": "alice@example.com"
+}
+----
+a|
+* Status: `200 OK`
+* Body contains the created user
+* `Location` header is set
+
+a|
+*Validation error*
+
+Missing required fields.
+a|
+A request with an empty body:
+
+[source,json]
+----
+{}
+----
+a|
+. Return `400 Bad Request`
+. Body includes an `errors` array:
+.. `"name is required"`
+.. `"email is required"`
+
+a|
+*Conflict*
+a|
+A request that duplicates an existing email:
+
+[source,json]
+----
+{
+  "name": "Bob",
+  "email": "alice@example.com"
 }
 ----
 
-You can include *formatting*, `code`, and more.
+WARNING: This can happen during race conditions with concurrent registrations.
+a|
+* Status: `409 Conflict`
+* Body: `{"error": "email already exists"}`
+
+The client should retry with a different email or prompt the user.
+|===
+
+=== Table with Nested Table (via AsciiDoc cells)
+
+|===
+| Category | Details
+
+a|
+*Server Environments*
+a|
+[cols="1,1,1"]
+!===
+! Environment ! URL ! Status
+
+! Development
+! `dev.example.com`
+! Active
+
+! Staging
+! `staging.example.com`
+! Active
+
+! Production
+! `example.com`
+! Active
+!===
+
+a|
+*Deployment Checklist*
+a|
+Before deploying to production, verify:
+
+* [ ] All tests pass
+* [ ] No critical vulnerabilities
+* [x] Changelog updated
+* [x] Version bumped
+
+Then follow these steps:
+
+. Merge to `main`
+. Wait for CI
+. Tag the release
+|===
+
+== Images, Videos, and Media
+
+This section exercises every media-related AsciiDoc construct.
+
+=== Block Images
+
+A block image with a title (rendered as a `<figure>` with `<figcaption>`):
+
+.The Docusaurus logo — a friendly dinosaur
+image::https://docusaurus.io/img/docusaurus.png[Docusaurus logo,200,200]
+
+A block image without a title:
+
+image::https://picsum.photos/seed/asciidoc-demo/800/300[Random landscape,800,300]
+
+=== Inline Images
+
+Icons and small graphics can be placed inline.
+For example, the status indicator image:https://img.shields.io/badge/build-passing-brightgreen[build passing]
+appears right next to this text, and this one image:https://img.shields.io/badge/coverage-98%25-brightgreen[coverage badge]
+follows immediately.
+
+=== YouTube Videos
+
+AsciiDoc's `video::` macro with the `youtube` positional attribute
+generates a responsive iframe embed.
+
+video::dQw4w9WgXcQ[youtube,width=560,height=315]
+
+Another example — a short documentary clip:
+
+video::jNQXAC9IVRw[youtube,width=560,height=315]
+
+=== Vimeo Videos
+
+The same macro works for Vimeo:
+
+video::148751763[vimeo,width=560,height=315]
+
+=== Open Block (Generic Container)
+
+An open block can act as a generic wrapper.  Here it wraps a paragraph
+and a list:
+
+--
+This paragraph lives inside an open block.
+
+* Open blocks are versatile containers.
+* They can hold any block content.
+* Use them when you need a wrapper without specific semantics.
+--
+
+=== Passthrough Block
+
+A passthrough block lets you inject raw HTML directly.  Useful for
+widgets, embeds, or any HTML the AsciiDoc syntax doesn't cover natively.
+
+++++
+<div style="padding:1rem;border:2px dashed #6c63ff;border-radius:8px;background:#f8f7ff;text-align:center">
+  <p style="margin:0;font-size:1.2em;color:#6c63ff"><strong>Raw HTML Passthrough</strong></p>
+  <p style="margin:0.5rem 0 0">This box is rendered from a <code>++++</code> passthrough block.</p>
+</div>
+++++
+
+=== Stem (Math Formulas)
+
+AsciiDoc supports mathematical formulas via the `stem` macro.
+
+The quadratic formula is:
+
+[stem]
+++++
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+++++
+
+Euler's identity:
+
+[stem]
+++++
+e^{i\pi} + 1 = 0
+++++
+
+=== Mixed Media Paragraph
+
+A paragraph that combines text, inline images, links, and formatting:
+the image:https://img.shields.io/badge/status-stable-blue[status badge]
+badge confirms that the *latest release* is stable.
+Visit the https://docs.asciidoctor.org[AsciiDoc Language Documentation]
+for the full reference, or watch the
+https://www.youtube.com/watch?v=dQw4w9WgXcQ[introductory video]
+to get started quickly.
+
+== Sections and Deep Nesting
+
+=== Level 3: Architecture Overview
+
+The system is composed of several layers, each with a well-defined
+responsibility.
+
+==== Level 4: Presentation Layer
+
+The presentation layer handles all user-facing concerns: routing, rendering,
+and interaction.
+
+===== Level 5: Component Library
+
+The component library provides a set of reusable UI primitives built on
+top of the design system tokens.
+
+====== Level 6: Button Component
+
+The `Button` component is the most fundamental interactive element.  It
+supports variants (`primary`, `secondary`, `ghost`), sizes (`sm`, `md`,
+`lg`), and an `isLoading` state.
+
+[source,tsx]
+----
+interface ButtonProps {
+  variant?: "primary" | "secondary" | "ghost";
+  size?: "sm" | "md" | "lg";
+  isLoading?: boolean;
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+----
+
+== Paragraphs With Rich Inline Content
+
+The `fromAsciidoc()` function accepts a *raw AsciiDoc string* and returns a
+fully-typed `Document` node.  Under the hood it delegates to
+https://github.com/asciidoctor/asciidoctor.js[@asciidoctor/core] for parsing,
+then walks the Asciidoctor block model to produce an _adast_ tree that
+conforms to the https://github.com/syntax-tree/unist[unist] specification.
+
+Conversion to *mdast* is handled by `toMdast()`, which maps every adast
+node type to its closest Markdown equivalent.  Types without a direct
+counterpart — such as `admonition`, `sidebar`, and `descriptionList` — are
+lowered into blockquotes, divs, or definition-list approximations, keeping
+the content _lossless_ even if the structural semantics change.
+
+== Sidebar Block
+
+****
+This is a *sidebar* block.  Sidebars provide supplementary content that is
+tangentially related to the main discussion.  They are visually distinct and
+typically rendered with a border or background colour.
+
+You can include _any_ block content inside a sidebar: paragraphs, lists,
+code blocks, and more.
+
+* Item inside a sidebar
+* Another item
+****
+
+== Example Block
+
+====
+This is an example block.  Example blocks are used to illustrate concepts
+or demonstrate usage.
+
+They can contain multiple paragraphs, *formatted text*, and even code:
+
+[source,json]
+----
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "An example package"
+}
+----
 ====
 
-== Mathematical Expressions
+== Literal Block
 
-If you have MathJax configured, you can include mathematical expressions:
+....
+This is a literal block.
+  It preserves whitespace and indentation.
+    No inline formatting is applied: *this stays as-is*.
+  Useful for ASCII art or pre-formatted text.
+....
 
-[source,asciidoc]
-----
-The Pythagorean theorem: \(a^2 + b^2 = c^2\)
+== Thematic Break
 
-\[ \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi} \]
-----
+Content above the break.
 
-== Conditional Content
+'''
 
-AsciiDoc supports conditional content based on attributes:
+Content below the break.
 
-[source,asciidoc]
-----
-ifdef::env-github[]
-This content only appears on GitHub.
-endif::[]
+== Verse Block
 
-ifndef::env-site[]
-This content is hidden on the live site.
-endif::[]
-----
+[verse, William Ernest Henley, Invictus]
+____
+Out of the night that covers me,
+  Black as the pit from pole to pole,
+I thank whatever gods may be
+  For my unconquerable soul.
+____
 
-== Custom Attributes
+[[deep-nesting-stress-test]]
+== Deep Nesting Stress Test
 
-Define and use custom attributes:
+This section intentionally stacks multiple nesting levels to exercise the
+converter's robustness.
 
-[source,asciidoc]
-----
-// Define attributes
-:project-name: Docusaurus AsciiDoc Plugin
-:version: 1.0.0
-
-Welcome to {project-name} v{version}!
-
-The current version is {version}.
-----
-
-Results in:
-
-Welcome to {project-name} v{version}!
-
-The current version is {version}.
-
-== Source Code with Callouts
-
+. Outermost ordered list
+* Unordered child
+** Deeper unordered
+*** Even deeper
++
+A continuation paragraph inside the deepest unordered item with *bold*
+and _italic_ text.
++
 [source,javascript]
 ----
-// Define a simple function
-function greet(name) {        // <1>
-  if (!name) {                 // <2>
-    return 'Hello, World!';    // <3>
-  }
-  return `Hello, ${name}!`;    // <4>
-}
-
-// Usage
-console.log(greet());         // <5>
-console.log(greet('AsciiDoc')); // <6>
+console.log("Code inside a deeply nested list item");
 ----
-<1> Function definition with parameter
-<2> Check if name is provided
-<3> Default greeting
-<4> Personalized greeting
-<5> Call without arguments
-<6> Call with arguments
++
+NOTE: An admonition inside a nested list!
++
+And another continuation paragraph.
+** Back to two-star depth
+* Back to one-star depth
+. Second outermost item
+.. Nested ordered
+... Deeper ordered
+.... Deepest ordered
++
+|===
+| A | Table | Inside
 
-== Diagrams (with Mermaid)
+| A
+| Deeply
+| Nested List
+|===
+. Third outermost item
+* Mixed again
+. Sub-ordered inside unordered inside ordered
+.. Two deep
+... Three deep
 
-If Mermaid is configured, you can include diagrams:
+== Complex Table with Spanning
 
-[source,mermaid]
-----
-graph TD
-    A[AsciiDoc File] --> B[Plugin Loader]
-    B --> C[AST Processing]
-    C --> D[Docusaurus Site]
-----
+[cols="1,2,2,2"]
+|===
+| Quarter | Revenue | Expenses | Profit
 
-== File Includes Example
+| Q1
+| $1,200,000
+| $980,000
+| $220,000
 
-Here's how you might structure reusable content:
+| Q2
+| $1,350,000
+| $1,020,000
+| $330,000
 
-=== Creating a Partial File
+| Q3
+| $1,100,000
+| $1,050,000
+| $50,000
 
-Create `docs/_partials/common-links.adoc`:
+| Q4
+| $1,500,000
+| $1,100,000
+| $400,000
+|===
 
-[source,asciidoc]
-----
-// Common links used across documentation
-:github-url: https://github.com/asciidoc-js/docusaurus-asciidoc
-:docs-url: /docs
+== Multiple Admonitions in Sequence
 
-* link:{github-url}[GitHub Repository]
-* link:{docs-url}/quick-start.adoc[Quick Start Guide]
-* link:{docs-url}/asciidoc-guide.adoc[AsciiDoc Guide]
-----
+NOTE: First note — establishing baseline information.
 
-=== Including the Partial
+TIP: A tip immediately following the note.
 
-[source,asciidoc]
-----
-== Related Links
+WARNING: A warning right after the tip.  This tests that consecutive
+admonitions render with proper spacing and distinct styling.
 
-include::_partials/common-links.adoc[]
-----
+IMPORTANT: Critical information that must not be ignored.
 
-== Advanced Code Features
+CAUTION: Final caution block.  Five admonitions in a row is unusual but
+should render cleanly.
 
-=== Multiple Languages in One Block
+== Paragraphs and Inline Stress
 
-[source,javascript,python]
-----
-// JavaScript version
-function fibonacci(n) {
-  return n <= 1 ? n : fibonacci(n-1) + fibonacci(n-2);
-}
+A paragraph with *every* _inline_ `element` mixed together: visit
+https://example.com[this link], note the ^superscript^ and ~subscript~,
+observe the #highlighted text#, and appreciate *_bold italic_* plus
+`*bold code*` in a single paragraph.
 
-// Python version
-def fibonacci(n):
-    return n if n <= 1 else fibonacci(n-1) + fibonacci(n-2)
-----
+Another paragraph to verify spacing.  This one includes a hard line break: +
+See? The text continues on the next line without starting a new paragraph.
 
-=== Code with Line Numbers and Highlighting
+Yet another paragraph with a very long sentence that contains multiple
+inline elements to ensure wrapping and rendering work correctly when the
+content is longer than a typical viewport width and the browser must break
+lines in sensible places while preserving all *bold*, _italic_, `code`,
+and https://example.com[link] formatting across the break points without
+any visual glitches or lost markup.
 
-[source,javascript,linenums,highlight=2-4]
-----
-import React from 'react';
+== Final Section
 
-function AsciiDocComponent({ content }) {
-  return (
-    <div className="asciidoc-content">
-      {content}
-    </div>
-  );
-}
-
-export default AsciiDocComponent;
-----
-
-== Next Steps
-
-* Return to the link:plugin-overview.adoc[Plugin Overview]
-* Check out link:../examples/lists-and-tables.adoc[More Table Examples]
-* Explore the link:asciidoc-guide.adoc[Complete Syntax Guide]
-</content>
+This concludes the comprehensive AsciiDoc demo.  If every section above
+renders correctly — with proper *inline formatting*, working
+<<deep-nesting-stress-test,cross-references>>, nested lists, tables,
+admonitions, code blocks, and deep section hierarchy — then the
+AsciiDoc-to-Docusaurus pipeline is working as intended.

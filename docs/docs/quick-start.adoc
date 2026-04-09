@@ -114,7 +114,6 @@ my-docusaurus-site/
 == Next Steps
 
 * Explore the link:asciidoc-guide.adoc[AsciiDoc Syntax Guide]
-* Check out link:../examples/code-blocks.adoc[Code Examples]
 * Learn about link:advanced-examples.adoc[Advanced Features]
 
 == Troubleshooting

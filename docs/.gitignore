@@ -1,12 +1,12 @@
 # Dependencies
 /node_modules
-/.pnp
-.pnp.js
 
-# Build output
+# Production
 /build
-/.docusaurus
-/dist
+
+# Generated files
+.docusaurus
+.cache-loader
 
 # Misc
 .DS_Store

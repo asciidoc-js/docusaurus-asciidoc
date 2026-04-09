@@ -57,5 +57,4 @@ vs AsciiDoc:
 ## Next Steps
 
 - Explore the [AsciiDoc Guide](asciidoc-guide.adoc)
-- Check out the [Code Blocks Example](examples/code-blocks.adoc)
-- View the [Lists and Tables Example](examples/lists-and-tables.adoc)
+- Check out the [Advanced Example](advanced-examples.adoc)

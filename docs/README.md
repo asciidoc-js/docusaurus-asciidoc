@@ -1,122 +1,41 @@
-# Docusaurus AsciiDoc Example
+# Website
 
-This is a sample Docusaurus project configured to use the `@asciidoc-js/docusaurus-asciidoc` plugin.
+This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-## Getting Started
-
-### Installation
-
-First, install the dependencies:
+## Installation
 
 ```bash
-npm install
+yarn
 ```
 
-### Development
-
-To start the development server:
+## Local Development
 
 ```bash
-npm start
+yarn start
 ```
 
-The site will be available at `http://localhost:3000`.
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-### Building
-
-To build the project for production:
+## Build
 
 ```bash
-npm run build
+yarn build
 ```
 
-The static files will be generated in the `build/` directory.
-
-## Project Structure
-
-```
-.
-├── docs/                    # Documentation source files
-│   ├── intro.adoc          # Introduction (AsciiDoc)
-│   ├── asciidoc-guide.adoc # AsciiDoc syntax guide
-│   ├── markdown-example.md # Markdown example
-│   └── examples/           # Example files
-│       ├── code-blocks.adoc
-│       └── lists-and-tables.adoc
-├── src/
-│   ├── css/               # Custom CSS
-│   ├── pages/             # React pages
-│   └── components/        # React components
-├── static/                # Static assets
-├── package.json
-├── docusaurus.config.js   # Docusaurus main config
-└── sidebars.js           # Sidebar navigation config
-```
-
-## Features
-
-This example demonstrates:
-
-- **AsciiDoc Support**: Full support for `.adoc` files alongside Markdown
-- **Markdown Compatibility**: Traditional Markdown still works perfectly
-- **Code Highlighting**: Syntax highlighting for multiple languages
-- **Tables & Lists**: Advanced table and list formatting
-- **Responsive Design**: Mobile-friendly layout
-
-## Configuration
-
-The plugin is configured in `docusaurus.config.js`:
-
-```javascript
-plugins: [
-  '@asciidoc-js/docusaurus-asciidoc',
-],
-
-presets: [
-  ['classic', {
-    docs: {
-      include: ['**/*.{md,mdx,adoc}'],
-    },
-  }],
-],
-```
-
-## Using AsciiDoc
-
-Create `.adoc` files in the `docs/` directory. Example:
-
-```asciidoc
----
-title: My Document
-description: A description
----
-
-= My Document
-
-This is AsciiDoc content.
-
-== Section
-
-Some text here.
-
-[source,javascript]
-----
-console.log('Hello, World!');
-----
-```
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 ## Deployment
 
-To deploy to GitHub Pages or another hosting service:
+Using SSH:
 
 ```bash
-npm run build
+USE_SSH=true yarn deploy
 ```
 
-Then serve the `build/` directory.
+Not using SSH:
 
-## Learn More
+```bash
+GIT_USER=<Your GitHub username> yarn deploy
+```
 
-- [Docusaurus Documentation](https://docusaurus.io/)
-- [AsciiDoc Language Docs](https://docs.asciidoctor.org/asciidoc/latest/)
-- [Plugin Repository](https://github.com/asciidoc-js/docusaurus-asciidoc)
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

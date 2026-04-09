@@ -102,5 +102,4 @@ Works in all modern browsers supported by Docusaurus. No additional polyfills re
 
 * link:quick-start.adoc[Quick Start Guide] - Get up and running quickly
 * link:advanced-examples.adoc[Advanced Examples] - Explore advanced AsciiDoc features
-* link:../examples/code-blocks.adoc[Code Examples] - See code highlighting in action
 </content>

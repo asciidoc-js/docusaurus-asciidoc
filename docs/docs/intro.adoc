@@ -59,5 +59,4 @@ presets: [
 == Next Steps
 
 * Check out the link:asciidoc-guide.adoc[AsciiDoc Guide] to learn the syntax
-* Explore the link:examples/code-blocks.adoc[Code Blocks Example]
 * Mix AsciiDoc and Markdown in the same project
